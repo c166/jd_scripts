@@ -1,10 +1,4 @@
 /*
- * @Author: shylocks https://github.com/shylocks
- * @Date: 2021-01-11 16:25:41
- * @Last Modified by:   shylocks
- * @Last Modified time: 2021-01-11 18:25:41
- */
-/*
 京东年货节
 活动入口：https://lzdz-isv.isvjcloud.com/dingzhi/vm/template/activity/940531?activityId=dzvm210168869301
 用5000金币开盲盒必中200-300京豆，任务做完每天1000，5天换一次
@@ -14,17 +8,17 @@
 ============Quantumultx===============
 [task_local]
 #京东年货节
-1 7 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_nh.js, tag=京东年货节, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+1 7 * * * jd_nh.js, tag=京东年货节, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "1 7 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_nh.js,tag=京东年货节
+cron "1 7 * * *" script-path=jd_nh.js,tag=京东年货节
 
 ===============Surge=================
-京东年货节 = type=cron,cronexp="1 7 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_nh.js
+京东年货节 = type=cron,cronexp="1 7 * * *",wake-system=1,timeout=3600,script-path=jd_nh.js
 
 ============小火箭=========
-京东年货节 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_nh.js, cronexpr="1 7 * * *", timeout=3600, enable=true
+京东年货节 = type=cron,script-path=jd_nh.js, cronexpr="1 7 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东年货节');
 
@@ -486,7 +480,7 @@ function TotalBean() {
         "Connection": "keep-alive",
         "Cookie": cookie,
         "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
       }
     }
     $.post(options, (err, resp, data) => {

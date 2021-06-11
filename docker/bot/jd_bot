@@ -77,7 +77,7 @@ def node(update, context):
             try:
 
                 out_bytes = subprocess.check_output(
-                    cmd, shell=True, timeout=600, stderr=subprocess.STDOUT)
+                    cmd, shell=True, timeout=3600, stderr=subprocess.STDOUT)
 
                 out_text = out_bytes.decode('utf-8')
 
@@ -795,7 +795,7 @@ def get_jd_cookie(update, context):
     qr_code_path = genQRCode()
     photo_file = open(qr_code_path, 'rb')
     photo_message = context.bot.send_photo(chat_id=update.effective_chat.id, photo=photo_file,
-                                           caption="请使用京东APP扫描二维码获取Cookie")
+                                           caption="请使用京东APP扫描二维码获取Cookie(二维码有效期：3分钟)")
     photo_file.close()
 
     return_msg = chekLogin()

@@ -11,17 +11,17 @@
 ============Quantumultx===============
 [task_local]
 #京东看一看
-10 9 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_watch.js, tag=京东看一看, enabled=true
+10 9 * * * jd_watch.js, tag=京东看一看, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 9 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_watch.js,tag=京东看一看
+cron "10 9 * * *" script-path=jd_watch.js,tag=京东看一看
 
 ===============Surge=================
-京东看一看 = type=cron,cronexp="10 9 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_watch.js
+京东看一看 = type=cron,cronexp="10 9 * * *",wake-system=1,timeout=3600,script-path=jd_watch.js
 
 ============小火箭=========
-京东看一看 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_watch.js, cronexpr="10 9 * * *", timeout=3600, enable=true
+京东看一看 = type=cron,script-path=jd_watch.js, cronexpr="10 9 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东看一看');
 let acceptBody = [
@@ -219,8 +219,8 @@ function showMsg() {
     // $.msg($.name, '', `京东账号${$.index} ${$.nickName}\n${message}`);
     let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
     if (nowTime > new Date('2020/12/31 23:59:59+08:00').getTime()) {
-      $.msg($.name, '活动已结束', `咱江湖再见\nhttps://github.com/LXK9301/jd_scripts`, {"open-url": "https://github.com/LXK9301/jd_scripts"});
-      if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `咱江湖再见\n https://github.com/LXK9301/jd_scripts`)
+      $.msg($.name, '活动已结束', `咱江湖再见`);
+      if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `咱江湖再见`)
     } else {
       $.msg($.name, '', `京东账号${$.index} ${$.nickName}\n${message}`);
     }
@@ -341,7 +341,7 @@ function taskPostUrl(function_id, body = {}) {
     headers: {
       "Cookie": cookie,
       'Content-Type': 'application/x-www-form-urlencoded',
-      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0"),
+      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
     }
   }
 }
@@ -358,7 +358,7 @@ function TotalBean() {
         "Connection": "keep-alive",
         "Cookie": cookie,
         "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
       }
     }
     $.post(options, (err, resp, data) => {
